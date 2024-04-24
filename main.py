@@ -57,8 +57,9 @@ def plot_color_map(centers):
     # Create a color map using the segmented colors
     cmap = ListedColormap([color / 255 for color in centers])
 
-    # Plot the color map
-    fig, ax = plt.subplots(figsize=(10, 0.5))
+    # Plot the color map in full screen
+    fig = plt.figure(figsize=(15, 10))
+    ax = fig.add_subplot(111)
     bounds = np.arange(0, len(centers) + 1)
     norm = plt.Normalize(bounds.min(), bounds.max())
     cb = plt.colorbar(plt.cm.ScalarMappable(norm=norm, cmap=cmap),
@@ -66,6 +67,7 @@ def plot_color_map(centers):
     cb.set_label('Segment')
     cb.ax.set_xticklabels([str(i) for i in range(1, len(centers) + 1)])
     cb.ax.tick_params(axis='x', direction='out', length=3, width=1)
+    plt.show()
 
 if __name__ == "__main__":
     image_path = 'imgs\catmill.jpg'
@@ -84,4 +86,4 @@ if __name__ == "__main__":
 
     # Plot the color map
     plot_color_map(centers)
-    plt.show()
+    #plt.show()
